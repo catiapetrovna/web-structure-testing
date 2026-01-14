@@ -8,7 +8,6 @@ body {
     margin: 0;
     font-family: 'Georgia', serif;
     background: var(--bg-gradient);
-    /* ESTA LINHA É A CHAVE: impede o fundo de rolar com o conteúdo */
     background-attachment: fixed; 
     background-size: cover;
     background-repeat: no-repeat;
@@ -16,19 +15,18 @@ body {
     min-height: 100vh;
 }
 
-/* Remove qualquer fundo que as secções possam ter herdado */
+
 .welcome-screen, .mural-layout {
     background: transparent !important;
 }
 
-/* ECRÃ DE ENTRADA (MANTIDO) */
 .welcome-screen {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: transparent; /* Garante que é transparente */
+    background: transparent; 
 }
 
 .hero-card {
@@ -109,15 +107,15 @@ body {
 
 .polaroid {
     background: white;
-    padding: 10px 10px 30px 10px;
+    padding: 8px 8px 20px 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s;
-    width: 230px; /* Fotos ligeiramente menores para caberem bem */
+    width: 200px; 
 }
 
 .polaroid img { 
     width: 100%; 
-    height: 230px; 
+    height: 200px; 
     object-fit: cover; 
 }
 
@@ -129,13 +127,11 @@ body {
     font-size: 1.1rem;
 }
 
-
-
 .rot-left { transform: rotate(-3deg); }
 .rot-right { transform: rotate(3deg); }
 .polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
-/* Coluna do Jogo (Fica fixa ao descer a página se quiseres) */
+
 .game-column {
     position: sticky;
     top: 40px;
@@ -144,26 +140,25 @@ body {
 }
 
 .game-card-large {
-    background: rgba(255, 255, 255, 0.7); /* Efeito de vidro */
-    backdrop-filter: blur(10px); /* Desfoca o fundo atrás do cartão */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
     padding: 25px;
     border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(216, 27, 96, 0.2); /* Sombra rosa suave */
+    box-shadow: 0 20px 40px rgba(216, 27, 96, 0.2); 
     border: 1px solid rgba(255, 255, 255, 0.5);
-    width: 420px;
-    transform: rotate(0deg); /* Vamos deixá-lo direito para o jogo ser mais preciso */
+    width: 95%;
+    transform: rotate(0deg); 
     transition: all 0.4s ease;
 }
 
 #game-canvas {
     width: 400px;
     height: 400px;
-    background: white; /* Fundo branco limpo para os corações brilharem */
+    background: white; 
     border-radius: 20px;
     position: relative;
     overflow: hidden;
     cursor: none;
-    /* Borda Neon que "pulsa" */
     border: 3px solid var(--pink);
     box-shadow: inset 0 0 15px rgba(255, 128, 171, 0.2), 0 0 20px rgba(255, 128, 171, 0.3);
     animation: neon-pulse 2s infinite alternate;
@@ -172,7 +167,7 @@ body {
 #player { 
     width: 55px; 
     height: 55px; 
-    background: radial-gradient(circle, #ff80ab, #d81b60); /* Gradiente para dar volume */
+    background: radial-gradient(circle, #ff80ab, #d81b60); 
     border-radius: 50%; 
     position: absolute; 
     bottom: 15px; 
@@ -224,14 +219,11 @@ body {
 }
 
 /* RESPONSIVIDADE (Para telemóveis) */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .mural-layout {
-        grid-template-columns: 1fr; /* Volta a uma coluna em ecrãs pequenos */
-    }
-    .game-column {
-        position: relative;
-        top: 0;
-        margin-top: 40px;
+        grid-template-columns: 1fr;
+        padding: 40px 10px;
+        gap: 20px;
     }
 }
 
@@ -241,7 +233,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95); /* Fundo quase opaco para destacar a mensagem */
+    background: rgba(255, 255, 255, 0.95); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -314,7 +306,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* Garante que há espaço para o envelope */
+    min-height: 80vh; 
     background: transparent;
 }
 
@@ -322,7 +314,7 @@ body {
     position: relative;
     width: 380px;
     height: 250px;
-    background-color: #fce4ec; /* Rosa muito claro, quase branco */
+    background-color: #fce4ec; 
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     transition: transform 0.5s ease-in-out;
@@ -330,7 +322,6 @@ body {
     perspective: 1000px;
 }
 
-/* Base do envelope */
 .envelope-back {
     position: absolute;
     width: 100%;
@@ -339,24 +330,22 @@ body {
     border-radius: 10px;
 }
 
-/* Triângulos da frente do envelope */
 .envelope-front {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 125px solid transparent; /* Metade da altura */
-    border-bottom: 125px solid #ffccd1; /* Rosa claro para o topo do triângulo */
-    border-left: 190px solid #ffccd1; /* Metade da largura */
+    border-top: 125px solid transparent; 
+    border-bottom: 125px solid #ffccd1; 
+    border-left: 190px solid #ffccd1; 
     border-right: 190px solid #ffccd1;
     border-radius: 0 0 10px 10px;
 }
 
-/* Aba superior do envelope */
 .envelope-top-flap {
     position: absolute;
     width: 0;
     height: 0;
-    border-top: 150px solid #ffb2be; /* Rosa um pouco mais escuro */
+    border-top: 150px solid #ffb2be; 
     border-left: 190px solid transparent;
     border-right: 190px solid transparent;
     border-radius: 10px 10px 0 0;
@@ -365,7 +354,6 @@ body {
     z-index: 2;
 }
 
-/* O selo de cera / Botão para abrir */
 .wax-seal {
     position: absolute;
     top: 50%;
@@ -391,12 +379,11 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* --- ESTILO DA CARTA DENTRO DO ENVELOPE --- */
 .letter-content {
     position: absolute;
     width: 85%;
     height: 90%;
-    background-color: #fffaf0; /* Cor de papel creme */
+    background-color: #fffaf0; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -413,9 +400,9 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 1rem;
-    overflow-y: auto; /* Adiciona scroll se o texto for maior que o envelope */
-    padding-right: 15px; /* Espaço para o scroll não ficar colado ao texto */
-    font-size: 1.1rem; /* Ajusta o tamanho se achares muito pequeno ou grande */
+    overflow-y: auto; 
+    padding-right: 15px; 
+    font-size: 1.1rem; 
 }
 
 .letter-content::-webkit-scrollbar {
@@ -434,20 +421,18 @@ body {
 .letter-opener { font-size: 1.2rem; font-weight: bold; }
 .letter-signature { text-align: right; font-size: 1.3rem; color: var(--dark-pink); margin-top: 20px; }
 
-
-/* --- ESTADOS DE ABERTURA DO ENVELOPE --- */
 .envelope.open .envelope-top-flap {
-    transform: rotateX(180deg) translateY(-2px); /* Abre a aba para cima */
-    z-index: 0; /* Manda para trás para a carta aparecer */
+    transform: rotateX(180deg) translateY(-2px);
+    z-index: 0; 
 }
 
 .envelope.open .wax-seal {
-    opacity: 0; /* Esconde o selo */
-    pointer-events: none; /* Deixa de ser clicável */
+    opacity: 0; 
+    pointer-events: none;
 }
 
 .envelope.open .letter-content {
-    transform: translate(-50%, -50%) translateY(-10px) scale(1); /* Puxa a carta para cima e mostra */
+    transform: translate(-50%, -50%) translateY(-10px) scale(1); 
     opacity: 1;
-    transition-delay: 0.3s; /* Aparece um pouco depois da aba abrir */
+    transition-delay: 0.3s; 
 }
