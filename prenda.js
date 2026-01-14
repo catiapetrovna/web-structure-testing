@@ -153,7 +153,7 @@ if (volumeSlider && audio) {
 // 4. Inicialização (Confetes ao carregar e Envelope)
 // 4. Inicialização: Efeito Explosivo e Envelope
 document.addEventListener('DOMContentLoaded', () => {
-    // Configuração do Envelope (Mantido)
+    // Configuração do Envelope
     const envelope = document.getElementById('envelope-wrapper');
     const waxSeal = document.getElementById('wax-seal-btn');
 
@@ -163,13 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- EFEITO EXPLOSIVO DE BOAS-VINDAS ---
     if (typeof confetti === 'function') {
-        const duracao = 3 * 1000; // 3 segundos de festa
+        const duracao = 5 * 1000; // 3 segundos de festa
         const fim = Date.now() + duracao;
 
         const frame = () => {
-            // Lança confetis da esquerda
             confetti({
                 particleCount: 5,
                 angle: 60,
@@ -179,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 shapes: ['heart', 'circle']
             });
             
-            // Lança confetis da direita
             confetti({
                 particleCount: 5,
                 angle: 120,
@@ -194,9 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Pequeno atraso para o site carregar e... CABUM!
         setTimeout(() => {
-            // Grande explosão central inicial
             confetti({
                 particleCount: 150,
                 spread: 100,
@@ -206,8 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 scalar: 1.2
             });
             
-            // Inicia a chuva contínua das laterais
             frame();
         }, 600);
     }
+
 });
