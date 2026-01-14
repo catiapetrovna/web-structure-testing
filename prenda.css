@@ -1,0 +1,453 @@
+:root {
+    --pink: #ff80ab;
+    --dark-pink: #d81b60;
+    --bg-gradient: linear-gradient(45deg, #f7e9e9, #ffc1e3, #b2ebf2);
+}
+
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: var(--bg-gradient);
+    /* ESTA LINHA É A CHAVE: impede o fundo de rolar com o conteúdo */
+    background-attachment: fixed; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Remove qualquer fundo que as secções possam ter herdado */
+.welcome-screen, .mural-layout {
+    background: transparent !important;
+}
+
+/* ECRÃ DE ENTRADA (MANTIDO) */
+.welcome-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: transparent; /* Garante que é transparente */
+}
+
+.hero-card {
+    position: relative;
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+    max-width: 500px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-card .photo-frame img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid var(--pink);
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* INDICADOR DE SCROLL */
+.scroll-hint {
+    margin-top: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--pink);
+    font-weight: bold;
+    user-select: none;
+}
+
+
+.arrow-down {
+    width: 15px;
+    height: 15px;
+    border-bottom: 3px solid var(--pink);
+    border-right: 3px solid var(--pink);
+    transform: rotate(45deg);
+    animation: seta-saltitante 2s infinite; 
+}
+
+/* Nova animação corrigida para a seta saltar */
+@keyframes seta-saltitante {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) rotate(45deg);
+    }
+    40% {
+        transform: translateY(-10px) rotate(45deg);
+    }
+    60% {
+        transform: translateY(-5px) rotate(45deg);
+    }
+}
+
+.mural-layout {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px 120px 20px;
+    align-items: center;
+}
+
+/* Coluna das Fotos */
+.photos-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px 10px 30px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    width: 230px; /* Fotos ligeiramente menores para caberem bem */
+}
+
+.polaroid img { 
+    width: 100%; 
+    height: 230px; 
+    object-fit: cover; 
+}
+
+.polaroid p { 
+    font-family: 'Handlee', cursive; 
+    text-align: center; 
+    margin-top: 15px; 
+    color: #444; 
+    font-size: 1.1rem;
+}
+
+
+
+.rot-left { transform: rotate(-3deg); }
+.rot-right { transform: rotate(3deg); }
+.polaroid:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+
+/* Coluna do Jogo (Fica fixa ao descer a página se quiseres) */
+.game-column {
+    position: sticky;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.game-card-large {
+    background: rgba(255, 255, 255, 0.7); /* Efeito de vidro */
+    backdrop-filter: blur(10px); /* Desfoca o fundo atrás do cartão */
+    padding: 25px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(216, 27, 96, 0.2); /* Sombra rosa suave */
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    width: 420px;
+    transform: rotate(0deg); /* Vamos deixá-lo direito para o jogo ser mais preciso */
+    transition: all 0.4s ease;
+}
+
+#game-canvas {
+    width: 400px;
+    height: 400px;
+    background: white; /* Fundo branco limpo para os corações brilharem */
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    /* Borda Neon que "pulsa" */
+    border: 3px solid var(--pink);
+    box-shadow: inset 0 0 15px rgba(255, 128, 171, 0.2), 0 0 20px rgba(255, 128, 171, 0.3);
+    animation: neon-pulse 2s infinite alternate;
+}
+
+#player { 
+    width: 55px; 
+    height: 55px; 
+    background: radial-gradient(circle, #ff80ab, #d81b60); /* Gradiente para dar volume */
+    border-radius: 50%; 
+    position: absolute; 
+    bottom: 15px; 
+    box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+    border: 2px solid white;
+}
+
+#score { 
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
+    font-family: 'Handlee', cursive; 
+    background: rgba(216, 27, 96, 0.1);
+    padding: 5px 15px;
+    border-radius: 15px;
+    color: var(--dark-pink); 
+    font-size: 1.4rem;
+    backdrop-filter: blur(5px);
+}
+
+.game-caption {
+    font-family: 'Handlee', cursive;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--dark-pink);
+    font-size: 1.2rem;
+}
+
+/* PLAYER DE MÚSICA FIXO */
+#music-player {
+    position: fixed; bottom: 20px; right: 20px;
+    background: white; padding: 10px 20px; border-radius: 50px;
+    display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.music-btn { border: none; background: var(--pink); color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
+#volume-slider { width: 60px; accent-color: var(--pink); }
+
+.hidden { display: none !important; }
+.btn-msg-mini {
+    background: var(--pink);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* RESPONSIVIDADE (Para telemóveis) */
+@media (max-width: 900px) {
+    .mural-layout {
+        grid-template-columns: 1fr; /* Volta a uma coluna em ecrãs pequenos */
+    }
+    .game-column {
+        position: relative;
+        top: 0;
+        margin-top: 40px;
+    }
+}
+
+#game-win {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Fundo quase opaco para destacar a mensagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    animation: fadeIn 0.5s ease-in-out;
+    border-radius: 10px;
+}
+
+.win-content {
+    padding: 20px;
+    text-align: center;
+    max-width: 90%;
+}
+
+.win-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    animation: heartBeat 1.5s infinite;
+}
+
+#game-win h2 {
+    font-family: 'Handlee', cursive;
+    color: var(--dark-pink);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.final-text {
+    font-family: 'Handlee', cursive;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-msg-mini {
+    background: linear-gradient(to right, var(--pink), var(--dark-pink));
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 20px rgba(216, 27, 96, 0.3);
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-family: 'Handlee', cursive;
+    transition: 0.3s;
+}
+
+.btn-msg-mini:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 25px rgba(216, 27, 96, 0.5);
+}
+
+/* --- SECÇÃO DO ENVELOPE --- */
+.letter-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Garante que há espaço para o envelope */
+    background: transparent;
+}
+
+.envelope {
+    position: relative;
+    width: 380px;
+    height: 250px;
+    background-color: #fce4ec; /* Rosa muito claro, quase branco */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.5s ease-in-out;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+/* Base do envelope */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fce4ec;
+    border-radius: 10px;
+}
+
+/* Triângulos da frente do envelope */
+.envelope-front {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 125px solid transparent; /* Metade da altura */
+    border-bottom: 125px solid #ffccd1; /* Rosa claro para o topo do triângulo */
+    border-left: 190px solid #ffccd1; /* Metade da largura */
+    border-right: 190px solid #ffccd1;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Aba superior do envelope */
+.envelope-top-flap {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 150px solid #ffb2be; /* Rosa um pouco mais escuro */
+    border-left: 190px solid transparent;
+    border-right: 190px solid transparent;
+    border-radius: 10px 10px 0 0;
+    transform-origin: top;
+    transition: transform 0.5s ease-in-out;
+    z-index: 2;
+}
+
+/* O selo de cera / Botão para abrir */
+.wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--dark-pink);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.wax-seal:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* --- ESTILO DA CARTA DENTRO DO ENVELOPE --- */
+.letter-content {
+    position: absolute;
+    width: 85%;
+    height: 90%;
+    background-color: #fffaf0; /* Cor de papel creme */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: all 0.8s ease-in-out;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Handlee', cursive;
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+    overflow-y: auto; /* Adiciona scroll se o texto for maior que o envelope */
+    padding-right: 15px; /* Espaço para o scroll não ficar colado ao texto */
+    font-size: 1.1rem; /* Ajusta o tamanho se achares muito pequeno ou grande */
+}
+
+.letter-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.letter-content::-webkit-scrollbar-thumb {
+    background: var(--pink);
+    border-radius: 10px;
+}
+
+.letter-opener, .letter-body, .letter-closer, .letter-signature {
+    margin-bottom: 10px;
+    text-align: left;
+}
+.letter-opener { font-size: 1.2rem; font-weight: bold; }
+.letter-signature { text-align: right; font-size: 1.3rem; color: var(--dark-pink); margin-top: 20px; }
+
+
+/* --- ESTADOS DE ABERTURA DO ENVELOPE --- */
+.envelope.open .envelope-top-flap {
+    transform: rotateX(180deg) translateY(-2px); /* Abre a aba para cima */
+    z-index: 0; /* Manda para trás para a carta aparecer */
+}
+
+.envelope.open .wax-seal {
+    opacity: 0; /* Esconde o selo */
+    pointer-events: none; /* Deixa de ser clicável */
+}
+
+.envelope.open .letter-content {
+    transform: translate(-50%, -50%) translateY(-10px) scale(1); /* Puxa a carta para cima e mostra */
+    opacity: 1;
+    transition-delay: 0.3s; /* Aparece um pouco depois da aba abrir */
+}

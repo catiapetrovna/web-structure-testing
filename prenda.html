@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor ❤️</title>
+    <link rel="stylesheet" href="prenda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <section class="welcome-screen">
+            <div class="card hero-card">
+                <div class="photo-frame">
+                    <img src="Imagens/foto1.jpeg" alt="Nossa Foto">
+                </div>
+                <h1>Parabéns, Meu Amor! 🎂</h1>
+                <p>Quem faz anos és tu, mas o presente de ter-te na minha vida é meu. Que este novo ano seja incrível!</p>
+                
+                <div class="heart-icon">❤️</div>
+                
+                <div class="scroll-hint" onclick="scrollToMural()">
+                    <div class="arrow-down"></div>
+                </div>
+            </div>
+        </section>
+
+        <main id="mural-destino" class="mural-layout">
+            <div class="photos-column">
+                <div class="polaroid rot-left"><img src="Imagens/foto5.jpeg"><p>Das nossas primeiras fotos.</p></div>
+                <div class="polaroid rot-right"><img src="Imagens/foto3.jpeg"><p>A "foto".</p></div>
+                <div class="polaroid rot-left"><img src="Imagens/foto2.jpeg"><p>A nossa primeira viagem.</p></div>
+                <div class="polaroid rot-right"><img src="Imagens/foto4.jpeg"><p>Sexy desde sempre.</p></div>
+                <div class="polaroid rot-left"><img src="Imagens/foto6.jpeg"><p>Angerfist!</p></div>
+                <div class="polaroid rot-right"><img src="Imagens/foto7.jpeg"><p>Novo ano, melhor companhia.</p></div>
+                <div class="polaroid rot-left"><img src="Imagens/foto8.jpeg"><p>A vida que mereciamos.</p></div>
+                <div class="polaroid rot-right"><img src="Imagens/foto9.jpeg"><p>Futuros Milf & Dilf?</p></div>
+            </div>
+
+            <div class="game-column">
+                <div class="polaroid game-card-large">
+                    <div id="game-canvas">
+                        <div id="player"></div>
+                        <div id="score">0</div>
+                        
+                        <div id="game-win" class="hidden">
+                            <div class="win-content">
+                                <div class="win-icon">🎁</div>
+                                <h2>Para o meu jogador favorito:</h2>
+                                <p class="final-text">
+                                    Apanhaste todos os meus corações, mas a verdade é que eles já eram teus muito antes do jogo começar. <br><br>
+                                    Amo-te muito!
+                                </p>
+                                <button class="btn-msg-mini" onclick="restartGame()">Novo Jogo</button>
+                            </div>
+                        </div>
+                    </div>
+        </main>
+    </div>
+
+    <section class="letter-section">
+    <div class="envelope" id="envelope-wrapper">
+        <div class="envelope-back"></div>
+        <div class="envelope-front"></div>
+        <div class="envelope-top-flap"></div>
+        <div class="letter-content" id="love-letter">
+            <p class="letter-opener">Meu Amor,</p>
+            <p class="letter-body">
+                PARABÉNSSSS meu velhote! Escrevo-te mais uma cartinha, mas desta vez digital. Prometo que são tudo palavras minhas e nada de AI.<br><br>
+                Queria-te agradecer por todos estes anos. Claro que passamos por momentos bons e outros não tão bons, mas é isso que realmente nos faz crescer como pessoas, e como casal, certo?<br><br>
+                Espero que tenhas gostado desta prendinha, foi algo que ainda demorou algum tempinho, mas para ti podia demorar a vida inteira.<br><br>
+                Por falar em vida, estou ansiosa pelo nosso futuro, cada vez mais nos imagino a viver na nossa casinha, confortáveis, sem ninguém nos chatear, só um ao outro.<br><br>
+                Bem, já chega não? Não é como se merecesses... Brincadeiraaa, mereces o mundo inteiro e espero que saibas que estou orgulhosa em tudo o que fizeste, fazes e no que hás de fazer.
+            </p>
+            <p class="letter-closer">Com muito amor,</p>
+            <p class="letter-signature">A tua compota de abóbora</p>
+        </div>
+        <div class="wax-seal" id="wax-seal-btn">
+            ❤️
+        </div>
+    </div>
+</section>
+
+    <div id="music-player">
+        <button class="music-btn" onclick="toggleMusic()" id="play-icon">🎵</button>
+        <div class="volume-control">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+        <span class="music-info">Lover - Taylor Swift</span>
+        <audio id="myAudio" loop><source src="musica.mp3" type="audio/mpeg"></audio>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="prenda.js"></script>
+</body>
+</html>
